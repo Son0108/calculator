@@ -4,149 +4,114 @@ import Button from './button/button';
 import ButtonLong from './button/buttonLong';
 
 function App() {
-  
-  const [variable, setVariable] = useState("0");
-  const [variable1, setVariable1] = useState("");
-  const [variable2, setVariable2] = useState("");
+  const [cal, setCal] = useState("");
+  const [variable, setVariable] = useState("");
+  const [numOld, setNumOld] = useState("");
+  const [operator, setOperator] = useState("");
+  const [result, setResult] = useState("");
 
   return (
       <div className='container'>
         <div className='sub_container'>
           <div className='screen_calculator'>
-            {variable}
+            <div className='calculator'>
+              {cal}
+            </div>
+            <div className='result'>
+              {result}
+            </div>
           </div>
           <div>
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable)} title="AC" color="#c8d1dc" />
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable,setVariable1)} title="( )" color="#c8d1dc" />
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable,setVariable1)} title="%" color="#c8d1dc" />
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable,setVariable1)} title="/" color="#ea930f" colorText="white"/>
+            <Button clickSelect={(e) => operatorHandle(e,variable,setVariable,cal, setCal,operator, setOperator,numOld,setNumOld,setResult)} title="AC" color="#c8d1dc" />
+            <Button clickSelect={(e) => operatorHandle(e,variable,setVariable,cal, setCal,operator, setOperator,numOld,setNumOld,setResult)} title="( )" color="#c8d1dc" />
+            <Button clickSelect={(e) => operatorHandle(e,variable,setVariable,cal, setCal,operator, setOperator,numOld,setNumOld,setResult)} title="%" color="#c8d1dc" />
+            <Button clickSelect={(e) => operatorHandle(e,variable,setVariable,cal, setCal,operator, setOperator,numOld,setNumOld,setResult)} title="/" color="#ea930f" colorText="white"/>
           </div>
           <div>
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable)} title="7" color="#393d41" />
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable)} title="8" color="#393d41" />
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable)} title="9" color="#393d41" />
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable,setVariable1)} title="X" color="#ea930f" colorText="white"/>
+            <Button clickSelect={(e) => handleClick(e,variable, setVariable,cal, setCal)} title="7" color="#393d41" />
+            <Button clickSelect={(e) => handleClick(e,variable, setVariable,cal, setCal)} title="8" color="#393d41" />
+            <Button clickSelect={(e) => handleClick(e,variable, setVariable,cal, setCal)} title="9" color="#393d41" />
+            <Button clickSelect={(e) => operatorHandle(e,variable,setVariable,cal, setCal,operator, setOperator,numOld,setNumOld,setResult)} title="x" color="#ea930f" colorText="white"/>
           </div>
           <div>
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable)} title="4" color="#393d41" />
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable)} title="5" color="#393d41" />
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable)} title="6" color="#393d41" />
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable,setVariable1)} title="-" color="#ea930f" colorText="white"/>
+            <Button clickSelect={(e) => handleClick(e,variable, setVariable,cal, setCal)} title="4" color="#393d41" />
+            <Button clickSelect={(e) => handleClick(e,variable, setVariable,cal, setCal)} title="5" color="#393d41" />
+            <Button clickSelect={(e) => handleClick(e,variable, setVariable,cal, setCal)} title="6" color="#393d41" />
+            <Button clickSelect={(e) => operatorHandle(e,variable,setVariable,cal, setCal,operator, setOperator,numOld,setNumOld,setResult)} title="-" color="#ea930f" colorText="white"/>
           </div>
           <div>
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable)} title="1" color="#393d41" />
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable)} title="2" color="#393d41" />
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable)} title="3" color="#393d41" />
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable,setVariable1)} title="+" color="#ea930f" colorText="white"/>
+            <Button clickSelect={(e) => handleClick(e,variable, setVariable,cal, setCal)} title="1" color="#393d41" />
+            <Button clickSelect={(e) => handleClick(e,variable, setVariable,cal, setCal)} title="2" color="#393d41" />
+            <Button clickSelect={(e) => handleClick(e,variable, setVariable,cal, setCal)} title="3" color="#393d41" />
+            <Button clickSelect={(e) => operatorHandle(e,variable,setVariable,cal, setCal,operator, setOperator,numOld,setNumOld,setResult)} title="+" color="#ea930f" colorText="white"/>
           </div>
           <div>
-            <ButtonLong clickSelect={(e) => handleClick(e,variable,setVariable)} title="0" color="#393d41" />
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable)} title="," color="#393d41" />
-            <Button clickSelect={(e) => handleClick(e,variable,setVariable)} title="=" color="#ea930f" colorText="white"/>
+            <ButtonLong clickSelect={(e) => handleClick(e,variable, setVariable,cal, setCal)} title="0" color="#393d41" />
+            <Button clickSelect={(e) => operatorHandle(e,variable,setVariable,cal, setCal,operator, setOperator,numOld,setNumOld,setResult)} title="," color="#393d41" />
+            <Button clickSelect={(e) => operatorHandle(e,variable,setVariable,cal, setCal,operator, setOperator,numOld,setNumOld,setResult)} title="=" color="#ea930f" colorText="white"/>
           </div>
         </div>
       </div>
   );
 }
 
-function handleClick(e, variable,setVariable,setVariable1) {
-  switch (e.target.id) {
-    case '0':
-      if(variable === "0"){
-        setVariable(e.target.id)
-      } else {
-        setVariable([...variable, e.target.id])
-      }
-      break;
-    case '1':
-      if(variable === "0"){
-        setVariable(e.target.id)
-      } else {
-        setVariable([...variable, e.target.id])
-      }
-      break;
-    case '2':
-      if(variable === "0"){
-        setVariable(e.target.id)
-      } else {
-        setVariable([...variable, e.target.id])
-      }
-      break;
-    case '3':
-      if(variable === "0"){
-        setVariable(e.target.id)
-      } else {
-        setVariable([...variable, e.target.id])
-      }
-      break;
-    case '4':
-      if(variable === "0"){
-        setVariable(e.target.id)
-      } else {
-        setVariable([...variable, e.target.id])
-      }
-      break;
-    case '5':
-      if(variable === "0"){
-        setVariable(e.target.id)
-      } else {
-        setVariable([...variable, e.target.id])
-      }
-      break;
-    case '6':
-      if(variable === "0"){
-        setVariable(e.target.id)
-      } else {
-        setVariable([...variable, e.target.id])
-      }
-      break;
-    case '7':
-      if(variable === "0"){
-        setVariable(e.target.id)
-      } else {
-        setVariable([...variable, e.target.id])
-      }
-      break;
-    case '8':
-      if(variable === "0"){
-        setVariable(e.target.id)
-      } else {
-        setVariable([...variable, e.target.id])
-      }
-      break;
-    case '9':
-      if(variable === "0"){
-        setVariable(e.target.id)
-      } else {
-        setVariable([...variable, e.target.id])
-      }
-      break;
+function handleClick(e,variable, setVariable,cal, setCal) {
+    setVariable(variable + e.target.value)
+    setCal(cal + e.target.value)
+}
+
+function operatorHandle(e,variable,setVariable,cal, setCal,operator,setOperator,numOld,setNumOld,setResult) {
+  switch (e.target.value) {
     case 'AC':
-      setVariable("0");
+      setVariable("");
+      setCal("");
+      setNumOld("");
+      setOperator("");
+      setResult("")
       break;
-    case '( )':
     case '%':
-    case '/':
-      setVariable1(variable);
+      setCal(variable + e.target.value)
+      setNumOld(variable);
+      setOperator(e.target.value)
       setVariable("");
       break;
-    case 'X':
-      setVariable1(variable);
+    case '/':
+      setCal(variable + e.target.value)
+      setNumOld(variable);
+      setOperator(e.target.value)
+      setVariable("");
+      break;
+    case 'x':
+      setCal(variable + e.target.value)
+      setNumOld(variable);
+      setOperator(e.target.value)
       setVariable("");
       break;
     case '-':
-      setVariable1(variable);
+      setCal(variable + e.target.value)
+      setNumOld(variable);
+      setOperator(e.target.value)
       setVariable("");
       break;
     case '+':
-      setVariable1(variable);
+      setCal(variable + e.target.value)
+      setNumOld(variable);
+      setOperator(e.target.value)
       setVariable("");
       break;
-    case ',':
-      setVariable([...variable, e.target.id])
-      break;
     case '=':
+      if(operator === "%") {
+        setResult(numOld % variable)
+      } else if(operator === "/") {
+        setResult(numOld / variable)
+      } else if(operator === "x") {
+        setResult(numOld * variable)
+      } else if(operator === "-") {
+        setResult(numOld - variable)
+      } else if(operator === "+") {
+        setResult(parseInt(numOld) + parseInt(variable) )
+      }
   }
-}
+} 
 
 export default App;

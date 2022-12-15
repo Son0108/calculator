@@ -6,7 +6,7 @@
 .sub_container {
     display: inline-block;
     width:320px;
-    height:500px;
+    height:550px;
     padding: 30px;
     background-color: black;
     border-radius: 25px;
@@ -14,10 +14,16 @@
 
 .screen_calculator {
   width:320px;
-  height:70px;
+  height:120px;
   border-radius: 15px;
   background-color: white;
   margin-bottom: 15px;
   font-size: 50px;
   text-align: end;
+}
+.calculator {
+  max-width: 320px;
+}
+.result {
+  max-width: 320px;
 }
