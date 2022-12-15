@@ -47,7 +47,7 @@ function App() {
           </div>
           <div>
             <ButtonLong clickSelect={(e) => handleClick(e,variable, setVariable,cal, setCal)} title="0" color="#393d41" />
-            <Button clickSelect={(e) => operatorHandle(e,variable,setVariable,cal, setCal,operator, setOperator,numOld,setNumOld,setResult)} title="," color="#393d41" />
+            <Button clickSelect={(e) => handleClick(e,variable, setVariable,cal, setCal)} title="." color="#393d41" />
             <Button clickSelect={(e) => operatorHandle(e,variable,setVariable,cal, setCal,operator, setOperator,numOld,setNumOld,setResult)} title="=" color="#ea930f" colorText="white"/>
           </div>
         </div>
@@ -101,15 +101,20 @@ function operatorHandle(e,variable,setVariable,cal, setCal,operator,setOperator,
       break;
     case '=':
       if(operator === "%") {
-        setResult(numOld % variable)
+        setResult(Math.round((numOld % variable) * 100) / 100)
+        setVariable(Math.round((numOld % variable) * 100) / 100)
       } else if(operator === "/") {
-        setResult(numOld / variable)
+        setResult(Math.round((numOld / variable) * 100) / 100)
+        setVariable(Math.round((numOld / variable) * 100) / 100)
       } else if(operator === "x") {
-        setResult(numOld * variable)
+        setResult(Math.round((numOld * variable) * 100) / 100)
+        setVariable(Math.round((numOld * variable) * 100) / 100)
       } else if(operator === "-") {
-        setResult(numOld - variable)
+        setResult(Math.round((numOld - variable) * 100) / 100)
+        setVariable(Math.round((numOld - variable) * 100) / 100)
       } else if(operator === "+") {
-        setResult(parseInt(numOld) + parseInt(variable) )
+        setResult(Math.round((parseInt(numOld) + parseInt(variable)) * 100) / 100)
+        setVariable(Math.round((parseInt(numOld) + parseInt(variable)) * 100) / 100)
       }
   }
 } 
