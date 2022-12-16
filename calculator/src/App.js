@@ -61,6 +61,7 @@ function handleClick(e,variable, setVariable,cal, setCal) {
 }
 
 function operatorHandle(e,variable,setVariable,cal, setCal,operator,setOperator,numOld,setNumOld,setResult) {
+  // eslint-disable-next-line
   switch (e.target.value) {
     case 'AC':
       setVariable("");
@@ -70,40 +71,35 @@ function operatorHandle(e,variable,setVariable,cal, setCal,operator,setOperator,
       setResult("")
       break;
     case '%':
-      setCal(variable + e.target.value)
-      setNumOld(variable);
-      setOperator(e.target.value)
-      setVariable("");
+      setVariable(variable/100);
+      setCal(cal + e.target.value)
       break;
     case '/':
-      setCal(variable + e.target.value)
+      setCal(cal + e.target.value)
       setNumOld(variable);
       setOperator(e.target.value)
       setVariable("");
       break;
     case 'x':
-      setCal(variable + e.target.value)
+      setCal(cal + e.target.value)
       setNumOld(variable);
       setOperator(e.target.value)
       setVariable("");
       break;
     case '-':
-      setCal(variable + e.target.value)
+      setCal(cal + e.target.value)
       setNumOld(variable);
       setOperator(e.target.value)
       setVariable("");
       break;
     case '+':
-      setCal(variable + e.target.value)
+      setCal(cal + e.target.value)
       setNumOld(variable);
       setOperator(e.target.value)
       setVariable("");
       break;
     case '=':
-      if(operator === "%") {
-        setResult(Math.round((numOld % variable) * 100) / 100)
-        setVariable(Math.round((numOld % variable) * 100) / 100)
-      } else if(operator === "/") {
+      if(operator === "/") {
         setResult(Math.round((numOld / variable) * 100) / 100)
         setVariable(Math.round((numOld / variable) * 100) / 100)
       } else if(operator === "x") {
@@ -115,6 +111,9 @@ function operatorHandle(e,variable,setVariable,cal, setCal,operator,setOperator,
       } else if(operator === "+") {
         setResult(Math.round((parseInt(numOld) + parseInt(variable)) * 100) / 100)
         setVariable(Math.round((parseInt(numOld) + parseInt(variable)) * 100) / 100)
+      } else{
+        setResult(parseInt(variable))
+        setVariable(parseInt(variable))
       }
   }
 } 
